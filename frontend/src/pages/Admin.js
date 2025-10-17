@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Plus, Edit, Trash2, Save, X } from "lucide-react";
+import { Plus, Edit, Trash2, Save, X, LogOut } from "lucide-react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -9,9 +10,12 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const Admin = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
