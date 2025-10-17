@@ -117,6 +117,52 @@ class NewsletterCreate(BaseModel):
     email: str
     name: Optional[str] = None
 
+class AdminLogin(BaseModel):
+    username: str
+    password: str
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+
+# JWT Helper Functions
+def create_access_token(data: dict):
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    try:
+        token = credentials.credentials
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise HTTPException(status_code=401, detail="Invalid authentication credentials")
+        return username
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token has expired")
+    except jwt.JWTError:
+        raise HTTPException(status_code=401, detail="Could not validate credentials")
+
+
+# Admin Authentication Routes
+@api_router.post("/admin/login", response_model=TokenResponse)
+async def admin_login(credentials: AdminLogin):
+    password_hash = hashlib.sha256(credentials.password.encode()).hexdigest()
+    
+    if credentials.username != ADMIN_USERNAME or password_hash != ADMIN_PASSWORD_HASH:
+        raise HTTPException(status_code=401, detail="Incorrect username or password")
+    
+    access_token = create_access_token(data={"sub": credentials.username})
+    return {"access_token": access_token, "token_type": "bearer"}
+
+@api_router.get("/admin/verify")
+async def verify_admin(username: str = Depends(verify_token)):
+    return {"username": username, "authenticated": True}
+
 
 # Create uploads directory if it doesn't exist
 UPLOAD_DIR = Path("/app/frontend/public/uploads")
