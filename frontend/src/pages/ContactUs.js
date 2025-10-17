@@ -89,7 +89,7 @@ const ContactUs = () => {
                   <Phone size={24} color="#C89EC7" style={{ marginTop: "4px" }} />
                   <div>
                     <h3 style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "8px" }}>Call or WhatsApp</h3>
-                    <p style={{ color: "#666", lineHeight: "1.6" }}>+91 XXXXX XXXXX</p>
+                    <p style={{ color: "#666", lineHeight: "1.6" }}>+91 9038129692</p>
                   </div>
                 </div>
 
