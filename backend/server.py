@@ -104,6 +104,31 @@ class NewsletterCreate(BaseModel):
     name: Optional[str] = None
 
 
+# Create uploads directory if it doesn't exist
+UPLOAD_DIR = Path("/app/frontend/public/uploads")
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
+
+# File Upload Route
+@api_router.post("/upload-image")
+async def upload_image(file: UploadFile = File(...)):
+    try:
+        # Generate unique filename
+        file_extension = file.filename.split(".")[-1]
+        unique_filename = f"{uuid.uuid4()}.{file_extension}"
+        file_path = UPLOAD_DIR / unique_filename
+        
+        # Save file
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+        # Return the public URL path
+        image_url = f"/uploads/{unique_filename}"
+        return {"url": image_url, "filename": unique_filename}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to upload image: {str(e)}")
+
+
 # Product Routes
 @api_router.post("/products", response_model=Product)
 async def create_product(product: ProductCreate):
