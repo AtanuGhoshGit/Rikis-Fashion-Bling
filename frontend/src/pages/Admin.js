@@ -188,12 +188,17 @@ const Admin = () => {
     }
 
     try {
-      await axios.delete(`${API}/products/${id}`);
+      await axios.delete(`${API}/products/${id}`, getAuthHeaders());
       toast.success("Product deleted successfully!");
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);
-      toast.error("Failed to delete product");
+      if (error.response?.status === 401) {
+        toast.error("Session expired. Please login again.");
+        handleLogout();
+      } else {
+        toast.error("Failed to delete product");
+      }
     }
   };
 
