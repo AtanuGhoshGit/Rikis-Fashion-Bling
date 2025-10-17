@@ -22,6 +22,7 @@ const Admin = () => {
     collection: "",
     images: [""]
   });
+  const [uploadingImages, setUploadingImages] = useState(false);
 
   const categories = ["earrings", "necklaces", "rings", "bracelets", "cosmetics"];
   const collections = ["kpop", "latest", "classics"];
