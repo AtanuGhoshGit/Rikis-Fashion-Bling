@@ -147,10 +147,10 @@ const Admin = () => {
       };
 
       if (editingId) {
-        await axios.put(`${API}/products/${editingId}`, productData);
+        await axios.put(`${API}/products/${editingId}`, productData, getAuthHeaders());
         toast.success("Product updated successfully!");
       } else {
-        await axios.post(`${API}/products`, productData);
+        await axios.post(`${API}/products`, productData, getAuthHeaders());
         toast.success("Product created successfully!");
       }
 
@@ -158,7 +158,12 @@ const Admin = () => {
       fetchProducts();
     } catch (error) {
       console.error("Error saving product:", error);
-      toast.error("Failed to save product");
+      if (error.response?.status === 401) {
+        toast.error("Session expired. Please login again.");
+        handleLogout();
+      } else {
+        toast.error("Failed to save product");
+      }
     }
   };
 
