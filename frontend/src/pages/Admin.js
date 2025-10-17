@@ -217,6 +217,21 @@ const Admin = () => {
     setShowForm(false);
   };
 
+  if (isLoading) {
+    return (
+      <div>
+        <Navigation />
+        <div style={{ padding: "120px 24px", textAlign: "center" }}>
+          <p style={{ fontSize: "1.25rem", color: "#666" }}>Verifying authentication...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <div>
       <Navigation />
