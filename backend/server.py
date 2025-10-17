@@ -247,7 +247,7 @@ async def update_product(product_id: str, product: ProductCreate, username: str 
     return updated
 
 @api_router.delete("/products/{product_id}")
-async def delete_product(product_id: str):
+async def delete_product(product_id: str, username: str = Depends(verify_token)):
     result = await db.products.delete_one({"id": product_id})
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Product not found")
