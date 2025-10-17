@@ -37,13 +37,16 @@ const Footer = () => {
                 <Link to="/" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Home</Link>
               </li>
               <li style={{ marginBottom: "12px" }}>
-                <a href="/#products" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Shop</a>
+                <Link to="/category/kpop" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>K-Pop Collection</Link>
               </li>
               <li style={{ marginBottom: "12px" }}>
-                <a href="/#collections" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Collections</a>
+                <Link to="/about" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>About Us</Link>
               </li>
               <li style={{ marginBottom: "12px" }}>
-                <Link to="/admin" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Admin</Link>
+                <Link to="/blog" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Blog</Link>
+              </li>
+              <li style={{ marginBottom: "12px" }}>
+                <Link to="/contact" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Contact</Link>
               </li>
             </ul>
           </div>
