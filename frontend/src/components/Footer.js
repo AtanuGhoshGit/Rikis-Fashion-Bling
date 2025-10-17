@@ -8,9 +8,11 @@ const Footer = () => {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "48px", marginBottom: "48px" }}>
           {/* Brand Section */}
           <div>
-            <h2 style={{ fontSize: "1.75rem", fontWeight: "700", marginBottom: "16px", fontFamily: "Playfair Display, serif" }}>
-              Riki's Fashion Bling
-            </h2>
+            <img 
+              src="https://customer-assets.emergentagent.com/job_sparkleshop/artifacts/m228ygdb_Rikis%20Fashion%20Bling.jpg" 
+              alt="Riki's Fashion Bling" 
+              style={{ maxWidth: "200px", width: "100%", height: "auto", marginBottom: "16px" }}
+            />
             <p style={{ fontSize: "1rem", color: "#CCC", lineHeight: "1.8", marginBottom: "24px" }}>
               Where style, sparkle, and Seoul collide. Discover K-Pop inspired jewelry and cosmetics from Darjeeling.
             </p>
