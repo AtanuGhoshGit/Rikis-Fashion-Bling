@@ -239,15 +239,26 @@ const Admin = () => {
       <div style={{ padding: "120px 24px 80px", maxWidth: "1400px", margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "48px" }}>
           <h1 style={{ fontSize: "3rem", fontWeight: "700" }} data-testid="admin-title">Admin Panel</h1>
-          <button
-            onClick={() => setShowForm(!showForm)}
-            data-testid="add-product-btn"
-            className="btn-primary"
-            style={{ display: "flex", alignItems: "center", gap: "8px" }}
-          >
-            {showForm ? <X size={20} /> : <Plus size={20} />}
-            {showForm ? "Cancel" : "Add Product"}
-          </button>
+          <div style={{ display: "flex", gap: "16px" }}>
+            <button
+              onClick={() => setShowForm(!showForm)}
+              data-testid="add-product-btn"
+              className="btn-primary"
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
+              {showForm ? <X size={20} /> : <Plus size={20} />}
+              {showForm ? "Cancel" : "Add Product"}
+            </button>
+            <button
+              onClick={handleLogout}
+              data-testid="logout-btn"
+              className="btn-secondary"
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
+              <LogOut size={20} />
+              Logout
+            </button>
+          </div>
         </div>
 
         {/* Product Form */}
