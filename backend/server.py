@@ -229,7 +229,7 @@ async def get_product(product_id: str):
     return product
 
 @api_router.put("/products/{product_id}", response_model=Product)
-async def update_product(product_id: str, product: ProductCreate):
+async def update_product(product_id: str, product: ProductCreate, username: str = Depends(verify_token)):
     existing = await db.products.find_one({"id": product_id}, {"_id": 0})
     if not existing:
         raise HTTPException(status_code=404, detail="Product not found")
