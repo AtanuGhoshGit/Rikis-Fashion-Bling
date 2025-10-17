@@ -184,9 +184,12 @@ const Home = () => {
       <section className="hero-section" data-testid="hero-section">
         <div className="hero-content" style={{ padding: "120px 24px", textAlign: "center" }}>
           <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-            <h1 className="gradient-text" style={{ fontSize: "4.5rem", fontWeight: "700", marginBottom: "24px", lineHeight: "1.1" }} data-testid="brand-title">
-              Riki's Fashion Bling
-            </h1>
+            <img 
+              src="https://customer-assets.emergentagent.com/job_sparkleshop/artifacts/m228ygdb_Rikis%20Fashion%20Bling.jpg" 
+              alt="Riki's Fashion Bling" 
+              style={{ maxWidth: "400px", width: "100%", height: "auto", margin: "0 auto 32px", display: "block" }}
+              data-testid="hero-logo"
+            />
             <p style={{ fontSize: "1.5rem", color: "#666", marginBottom: "40px", fontStyle: "italic" }} data-testid="tagline">
               Where style, sparkle, and Seoul collide.
             </p>
