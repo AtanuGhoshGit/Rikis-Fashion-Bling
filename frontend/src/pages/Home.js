@@ -441,7 +441,7 @@ const Home = () => {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <Phone color="#C89EC7" size={24} />
-              <span style={{ fontSize: "1.125rem", color: "#555" }}>+91 XXXXX XXXXX</span>
+              <span style={{ fontSize: "1.125rem", color: "#555" }}>+91 9038129692</span>
             </div>
           </div>
         </div>
