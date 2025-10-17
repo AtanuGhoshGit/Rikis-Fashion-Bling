@@ -32,8 +32,48 @@ const Admin = () => {
   const collections = ["kpop", "latest", "classics"];
 
   useEffect(() => {
-    fetchProducts();
+    verifyAuthentication();
   }, []);
+
+  const verifyAuthentication = async () => {
+    const token = localStorage.getItem("adminToken");
+    
+    if (!token) {
+      navigate("/admin/login");
+      return;
+    }
+
+    try {
+      await axios.get(`${API}/admin/verify`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setIsAuthenticated(true);
+      fetchProducts();
+    } catch (error) {
+      console.error("Authentication failed:", error);
+      localStorage.removeItem("adminToken");
+      navigate("/admin/login");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    toast.success("Logged out successfully");
+    navigate("/admin/login");
+  };
+
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem("adminToken");
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+  };
 
   const fetchProducts = async () => {
     try {
