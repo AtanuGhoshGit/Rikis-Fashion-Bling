@@ -31,10 +31,12 @@ const Navigation = () => {
       }}
     >
       <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Link to="/" style={{ textDecoration: "none" }} data-testid="nav-logo">
-          <h1 style={{ fontSize: "1.75rem", fontWeight: "700", color: "#2D2D2D", fontFamily: "Playfair Display, serif" }}>
-            Riki's <span className="gradient-text">Fashion Bling</span>
-          </h1>
+        <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }} data-testid="nav-logo">
+          <img 
+            src="https://customer-assets.emergentagent.com/job_sparkleshop/artifacts/m228ygdb_Rikis%20Fashion%20Bling.jpg" 
+            alt="Riki's Fashion Bling" 
+            style={{ height: "60px", width: "auto" }}
+          />
         </Link>
 
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
