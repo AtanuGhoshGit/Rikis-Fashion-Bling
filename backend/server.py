@@ -191,7 +191,7 @@ async def upload_image(file: UploadFile = File(...)):
 
 # Product Routes
 @api_router.post("/products", response_model=Product)
-async def create_product(product: ProductCreate):
+async def create_product(product: ProductCreate, username: str = Depends(verify_token)):
     product_dict = product.model_dump()
     product_obj = Product(**product_dict)
     
