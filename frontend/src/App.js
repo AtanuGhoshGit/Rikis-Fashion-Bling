@@ -7,6 +7,12 @@ import CategoryPage from "@/pages/CategoryPage";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import Admin from "@/pages/Admin";
+import AboutUs from "@/pages/AboutUs";
+import ContactUs from "@/pages/ContactUs";
+import Blog from "@/pages/Blog";
+import ShippingReturns from "@/pages/ShippingReturns";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsConditions from "@/pages/TermsConditions";
 import { Toaster } from "@/components/ui/sonner";
 
 function App() {
@@ -20,6 +26,12 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/shipping-returns" element={<ShippingReturns />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" richColors />
