@@ -24,6 +24,12 @@ const ProductDetail = () => {
     loadWishlist();
   }, [id]);
 
+  useEffect(() => {
+    if (product) {
+      fetchRelatedProducts();
+    }
+  }, [product]);
+
   const fetchProduct = async () => {
     try {
       const response = await axios.get(`${API}/products/${id}`);
