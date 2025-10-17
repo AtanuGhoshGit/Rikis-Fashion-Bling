@@ -240,17 +240,23 @@ const Home = () => {
           
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "32px" }}>
             {collections.map((collection, index) => (
-              <div key={index} className="collection-card" data-testid={`collection-card-${index}`}>
+              <Link 
+                key={index} 
+                to={`/category/${collection.collection}`}
+                className="collection-card" 
+                data-testid={`collection-card-${index}`}
+                style={{ textDecoration: "none" }}
+              >
                 <img src={collection.image} alt={collection.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <div className="collection-content">
                   <div style={{ fontSize: "3rem", marginBottom: "8px" }}>{collection.emoji}</div>
                   <h3 style={{ fontSize: "1.75rem", fontWeight: "700", marginBottom: "8px" }}>{collection.title}</h3>
                   <p style={{ fontSize: "1rem", marginBottom: "16px", opacity: "0.9" }}>{collection.description}</p>
-                  <a href="#products" className="btn-primary" style={{ display: "inline-block" }} data-testid={`view-collection-btn-${index}`}>
-                    View Collection <ArrowRight style={{ display: "inline", marginLeft: "8px" }} size={18} />
-                  </a>
+                  <span className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }} data-testid={`view-collection-btn-${index}`}>
+                    View Collection <ArrowRight style={{ display: "inline" }} size={18} />
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
