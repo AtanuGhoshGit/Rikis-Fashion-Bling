@@ -287,27 +287,86 @@ const Admin = () => {
               </div>
 
               <div style={{ gridColumn: "1 / -1" }}>
-                <label style={{ display: "block", marginBottom: "8px", fontWeight: "600" }}>Product Images (URLs) *</label>
+                <label style={{ display: "block", marginBottom: "8px", fontWeight: "600" }}>Product Images *</label>
+                <p style={{ fontSize: "0.875rem", color: "#666", marginBottom: "12px" }}>Upload images from your computer or paste image URLs</p>
                 {formData.images.map((image, index) => (
-                  <div key={index} style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
-                    <input
-                      type="url"
-                      value={image}
-                      onChange={(e) => handleImageChange(index, e.target.value)}
-                      placeholder="https://example.com/image.jpg"
-                      data-testid={`product-image-input-${index}`}
-                      style={{ flex: 1, padding: "12px", borderRadius: "8px", border: "2px solid #E5E5E5", fontSize: "1rem" }}
-                    />
-                    {formData.images.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => removeImageField(index)}
-                        data-testid={`remove-image-${index}`}
-                        style={{ padding: "12px", background: "#F44336", color: "white", border: "none", borderRadius: "8px", cursor: "pointer" }}
-                      >
-                        <Trash2 size={18} />
-                      </button>
+                  <div key={index} style={{ marginBottom: "16px", padding: "16px", background: "#F9F9F9", borderRadius: "12px" }}>
+                    <div style={{ display: "flex", gap: "12px", marginBottom: "12px", alignItems: "center" }}>
+                      <div style={{ flex: 1 }}>
+                        <label style={{ display: "block", fontSize: "0.875rem", fontWeight: "600", marginBottom: "8px" }}>
+                          Option 1: Upload from Computer
+                        </label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(index, e.target.files[0])}
+                          disabled={uploadingImages}
+                          data-testid={`product-image-file-${index}`}
+                          style={{ 
+                            width: "100%", 
+                            padding: "12px", 
+                            borderRadius: "8px", 
+                            border: "2px solid #E5E5E5", 
+                            fontSize: "1rem",
+                            background: "white"
+                          }}
+                        />
+                      </div>
+                    </div>
+                    
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+                      <div style={{ flex: 1, height: "1px", background: "#E5E5E5" }}></div>
+                      <span style={{ fontSize: "0.875rem", color: "#999" }}>OR</span>
+                      <div style={{ flex: 1, height: "1px", background: "#E5E5E5" }}></div>
+                    </div>
+                    
+                    <div style={{ marginBottom: "12px" }}>
+                      <label style={{ display: "block", fontSize: "0.875rem", fontWeight: "600", marginBottom: "8px" }}>
+                        Option 2: Paste Image URL
+                      </label>
+                      <input
+                        type="text"
+                        value={image}
+                        onChange={(e) => handleImageChange(index, e.target.value)}
+                        placeholder="https://example.com/image.jpg"
+                        data-testid={`product-image-url-${index}`}
+                        style={{ 
+                          width: "100%", 
+                          padding: "12px", 
+                          borderRadius: "8px", 
+                          border: "2px solid #E5E5E5", 
+                          fontSize: "1rem" 
+                        }}
+                      />
+                    </div>
+
+                    {image && (
+                      <div style={{ marginTop: "12px" }}>
+                        <p style={{ fontSize: "0.875rem", fontWeight: "600", marginBottom: "8px" }}>Preview:</p>
+                        <img 
+                          src={image} 
+                          alt={`Preview ${index + 1}`} 
+                          style={{ width: "150px", height: "150px", objectFit: "cover", borderRadius: "8px" }}
+                          onError={(e) => {
+                            e.target.style.display = "none";
+                          }}
+                        />
+                      </div>
                     )}
+
+                    <div style={{ marginTop: "12px", display: "flex", justifyContent: "flex-end" }}>
+                      {formData.images.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeImageField(index)}
+                          data-testid={`remove-image-${index}`}
+                          style={{ padding: "8px 16px", background: "#F44336", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontSize: "0.875rem", fontWeight: "600" }}
+                        >
+                          <Trash2 size={16} style={{ display: "inline", marginRight: "6px" }} />
+                          Remove
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
                 <button
@@ -319,6 +378,9 @@ const Admin = () => {
                 >
                   Add Another Image
                 </button>
+                {uploadingImages && (
+                  <p style={{ marginTop: "12px", color: "#C89EC7", fontSize: "0.875rem" }}>Uploading image...</p>
+                )}
               </div>
 
               <div style={{ gridColumn: "1 / -1", display: "flex", gap: "16px" }}>
