@@ -56,16 +56,13 @@ const Footer = () => {
             <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "16px" }}>Policies</h3>
             <ul style={{ listStyle: "none", padding: 0 }}>
               <li style={{ marginBottom: "12px" }}>
-                <a href="#" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Privacy Policy</a>
+                <Link to="/privacy-policy" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Privacy Policy</Link>
               </li>
               <li style={{ marginBottom: "12px" }}>
-                <a href="#" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Terms & Conditions</a>
+                <Link to="/terms-conditions" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Terms & Conditions</Link>
               </li>
               <li style={{ marginBottom: "12px" }}>
-                <a href="#" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Shipping Policy</a>
-              </li>
-              <li style={{ marginBottom: "12px" }}>
-                <a href="#" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Return Policy</a>
+                <Link to="/shipping-returns" style={{ color: "#CCC", textDecoration: "none", transition: "color 0.3s ease" }}>Shipping & Returns</Link>
               </li>
             </ul>
           </div>
