@@ -54,6 +54,34 @@ const Admin = () => {
     setFormData({ ...formData, images: newImages });
   };
 
+  const handleImageUpload = async (index, file) => {
+    if (!file) return;
+    
+    setUploadingImages(true);
+    const formDataUpload = new FormData();
+    formDataUpload.append('file', file);
+    
+    try {
+      const response = await axios.post(`${API}/upload-image`, formDataUpload, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      
+      // Update the image URL in the form
+      const newImages = [...formData.images];
+      newImages[index] = response.data.url;
+      setFormData({ ...formData, images: newImages });
+      
+      toast.success("Image uploaded successfully!");
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image");
+    } finally {
+      setUploadingImages(false);
+    }
+  };
+
   const addImageField = () => {
     setFormData({ ...formData, images: [...formData.images, ""] });
   };
