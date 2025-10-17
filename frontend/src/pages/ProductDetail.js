@@ -13,9 +13,11 @@ const API = `${BACKEND_URL}/api`;
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [wishlist, setWishlist] = useState([]);
+  const [showShareMenu, setShowShareMenu] = useState(false);
 
   useEffect(() => {
     fetchProduct();
