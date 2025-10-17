@@ -513,7 +513,7 @@ const Home = () => {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/91XXXXXXXXXX"
+        href="https://wa.me/919038129692"
         target="_blank"
         rel="noopener noreferrer"
         className="floating-whatsapp"
